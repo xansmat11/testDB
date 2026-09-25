@@ -18,7 +18,8 @@ body {
     background-attachment: fixed;
     color: #c9b896;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* faint ember/fog texture */
@@ -179,7 +180,8 @@ body {
     background-attachment: fixed;
     color: #c9b896;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* faint ember/fog texture */
@@ -340,7 +342,8 @@ body {
     background-attachment: fixed;
     color: #c9b896;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* faint ember/fog texture */
@@ -486,6 +489,8 @@ button:active {
 .dashboard-body {
     display: block;
     padding: 0;
+    align-items: stretch;
+    min-height: 100vh;
 }
 
 .navbar {
@@ -530,10 +535,12 @@ button:active {
 
 .dashboard-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: calc(100vh - 70px);
-    padding: 40px 20px;
+    padding: 40px 20px 60px;
+    gap: 32px;
 }
 
 .welcome-card {
@@ -623,5 +630,136 @@ button:active {
 
 .admin-card h1 span {
     color: #d4622f;
+}
+
+/* ============ Users Table ============ */
+
+.users-table-card {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    padding: 3px;
+    background: linear-gradient(135deg, #d4af37, #8a6d1f 40%, #d4af37 60%, #8a6d1f);
+    box-shadow:
+        0 0 40px rgba(212, 175, 55, 0.15),
+        0 0 80px rgba(0, 0, 0, 0.8);
+    clip-path: polygon(
+        12px 0, calc(100% - 12px) 0, 100% 12px,
+        100% calc(100% - 12px), calc(100% - 12px) 100%,
+        12px 100%, 0 calc(100% - 12px), 0 12px
+    );
+}
+
+.users-table-card::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: linear-gradient(180deg, #100c07 0%, #1a140c 50%, #0d0a06 100%);
+    clip-path: polygon(
+        11px 0, calc(100% - 11px) 0, 100% 11px,
+        100% calc(100% - 11px), calc(100% - 11px) 100%,
+        11px 100%, 0 calc(100% - 11px), 0 11px
+    );
+}
+
+.users-table-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.users-table-card {
+    padding: 36px 40px 40px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.users-table-card h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e8d9a8;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+    min-width: 360px;
+    border-collapse: collapse;
+    font-family: 'Cinzel', serif;
+}
+
+.users-table th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a89568;
+    padding: 10px 14px;
+    border-bottom: 1px solid #d4af37;
+    position: sticky;
+    top: 0;
+    background: #100c07;
+}
+
+.users-table th.col-admin {
+    color: #f0c9a8;
+    border-bottom: 2px solid #d4622f;
+}
+
+.users-table th.col-user {
+    color: #c9e8a8;
+    border-bottom: 2px solid #6fae3f;
+}
+
+.users-table td {
+    padding: 12px 14px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #e8d9a8;
+    border-bottom: 1px solid #2a2015;
+    border-right: 1px solid #2a2015;
+}
+
+.users-table td:last-child {
+    border-right: none;
+}
+
+.users-table tbody tr:hover td {
+    background: rgba(212, 175, 55, 0.06);
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+}
+
+.role-badge-admin {
+    background: linear-gradient(180deg, #7a2a10, #3d1508);
+    border: 1px solid #d4622f;
+    color: #f0c9a8;
+}
+
+.role-badge-user {
+    background: linear-gradient(180deg, #1e2a15, #0f1508);
+    border: 1px solid #6fae3f;
+    color: #c9e8a8;
+}
+
+.empty-cell {
+    color: #5a4e33;
+    font-style: italic;
 }
 
